@@ -149,19 +149,28 @@ public class MovemeontP : MonoBehaviour
         {
             lives--;
         }
-        if (lives < 0)
-        {
-            lives = 0;
-        }
-        if (lives == 0) 
-        {
-            lost = true;
-        }
         if (collision.gameObject.CompareTag("Won"))
         {
             won = true;
         }
+        if (collision.gameObject.CompareTag("Lost"))
+        {
+            lives = 0;
+        }
+
+        if (collision.gameObject.CompareTag("Lost") || collision.gameObject.CompareTag("Platform"))
+        {
+            if (lives == 0)
+            {
+                lost = true;
+            }
+            if (lives < 0)
+            {
+                lives = 0;
+            }
+        }
         
+
     }
     private void FixedUpdate()
     {
